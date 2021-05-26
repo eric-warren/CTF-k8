@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ctf-backend-.Values.chalName
+  labels:
+    app: ctf-.Values.chalName
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ctf-.Values.chalName
+  template:
+    metadata:
+      labels:
+        app: ctf-.Values.chalName
+    spec:
+      containers:
+      - name: .Values.chalName
+        image: .Values.image
+        imagePullPolicy: Always
+        livenessProbe:
+          exec:
+            command:
+          initialDelaySeconds: 15
+          periodSeconds: 20

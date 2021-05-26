@@ -1,0 +1,25 @@
+
+ctfd:
+  ctf-name : exampleCTF
+  ctf-description: This is a Description
+  mode: Team
+  admin-email: example@example.com
+  image: ctfd/ctfd
+  tlsCert: Y2VydA==
+  tlsKey: a2V5
+
+
+infra:
+  provider: digital-ocean
+  api_key: api_key
+  storage:
+    spaceKey: space_key
+    spaceSecret: space_sceret
+  max-rep: 9
+  min-rep: 1
+  CPU: 60
+
+dns:
+  domain: example.ca
+  provider: cloudflare
+  api_key: api_key

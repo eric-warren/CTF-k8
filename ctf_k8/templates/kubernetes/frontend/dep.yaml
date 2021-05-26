@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ctfd-frontend
+  name: ctfd-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ctfd-frontend
+  template:
+    metadata:
+      labels:
+        app: ctfd-frontend
+    spec:
+      containers:
+      - env:
+        - name: UPLOAD_FOLDER
+          value: /var/uploads
+        - name: DATABASE_URL
+          value: .mysql.uri
+        - name: REDIS_URL
+          value: .redis.uri
+        - name: WORKERS
+          value: '1'
+        - name: LOG_FOLDER
+          value: /var/log/CTFd
+        - name: ACCESS_LOG
+          value: '-'
+        - name: ERROR_LOG
+          value: '-'
+        image: .image
+        imagePullPolicy: IfNotPresent
+        name: ctfd
+        ports:
+        - containerPort: 8000

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: ctfd-frontend-ingress
+spec:
+  rules:
+  - host: .myhost
+    http:
+      paths:
+      - backend:
+          service:
+            name: ctfd-frontend-service
+            port:
+              number: 8000
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - .myhost
+    secretName: ctfd-frontend-tls
